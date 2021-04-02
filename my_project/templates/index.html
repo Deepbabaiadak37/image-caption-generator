@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+<meta charset="utf-8">
+<style type="text/css">
+  .conatiner{
+
+    padding: 20px;
+  }
+#uploadForm{
+  float: left;
+  width: 100%;
+
+}
+
+img,embed{
+  margin-top: 20px;
+}
+
+
+</style>
+ </head>
+
+
+<body>
+      <div class="container">
+          
+
+          <form method="post" action="/submit" enctype="multipart/form-data" id="uploadForm">
+              <input type="file" name="file" id="file" accept="image/*" />
+            
+              <input type="submit" name="submit" value="Upload"/>
+          </form>
+
+
+
+      </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+  
+function filePreview(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#uploadForm + img').remove();
+            $('#uploadForm').after('<img src="'+e.target.result+'" width="450" height="300"/>');
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#file").change(function () {
+    filePreview(this);
+});
+
+
+
+</script>  
+</body>
+</html>
